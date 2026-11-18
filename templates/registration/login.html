@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Entrar{% endblock %}
+{% block content %}
+<h1>Entrar</h1>
+<p class="lead">Accede con tu usuario y contraseña.</p>
+<form method="post" novalidate>
+  {% csrf_token %}
+  {% if form.non_field_errors %}<div class="resumen-errores"><strong>No se pudo iniciar sesión</strong>{{ form.non_field_errors }}</div>{% endif %}
+  {{ form.as_p }}
+  <input type="hidden" name="next" value="{{ next }}">
+  <button class="btn" type="submit">Entrar</button>
+</form>
+<p class="meta" style="margin-top:2rem">¿Sin cuenta? <a href="{% url 'registro' %}">Regístrate</a></p>
+{% endblock %}

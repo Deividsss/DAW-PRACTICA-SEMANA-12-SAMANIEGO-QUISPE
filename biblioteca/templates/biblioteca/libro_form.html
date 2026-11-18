@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Nuevo libro{% endblock %}
+{% block content %}
+<h1>Nuevo libro</h1>
+<p class="lead">ModelForm: validación por campo, cruzada y del modelo.</p>
+
+<form method="post" novalidate>
+  {% csrf_token %}
+  {% if form.non_field_errors %}
+    <div class="resumen-errores"><strong>Error general</strong>{{ form.non_field_errors }}</div>
+  {% endif %}
+  {{ form.as_p }}
+  <div class="acciones" style="margin-top:0">
+    <button class="btn" type="submit">Guardar</button>
+    <a class="btn ghost" href="{% url 'libros' %}">Cancelar</a>
+  </div>
+</form>
+{% endblock %}

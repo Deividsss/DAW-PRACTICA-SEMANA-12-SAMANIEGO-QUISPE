@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Contacto{% endblock %}
+{% block content %}
+<h1>Contacto</h1>
+<p class="lead">Formulario clásico con validación en servidor.</p>
+
+<form method="post" novalidate>
+  {% csrf_token %}
+  {% if form.errors %}
+    <div class="resumen-errores"><strong>Revisa el formulario</strong>{{ form.non_field_errors }}</div>
+  {% endif %}
+  {{ form.as_p }}
+  <button class="btn" type="submit">Enviar</button>
+</form>
+{% endblock %}

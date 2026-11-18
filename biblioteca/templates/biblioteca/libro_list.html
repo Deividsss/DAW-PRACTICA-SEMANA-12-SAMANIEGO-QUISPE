@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Libros{% endblock %}
+{% block content %}
+<h1>Catálogo</h1>
+<p class="lead">{{ libros|length }} libro{{ libros|length|pluralize }} registrado{{ libros|length|pluralize }}.</p>
+<ul class="lista">
+  {% for l in libros %}
+  <li>
+    <div><strong>{{ l.titulo }}</strong><br><small>{{ l.autor }} · ISBN {{ l.isbn }} · stock {{ l.stock }}</small></div>
+    <div style="text-align:right">S/ {{ l.precio }}<br>{% if l.publicado %}<span class="pill">publicado</span>{% else %}<span class="pill">borrador</span>{% endif %}</div>
+  </li>
+  {% empty %}<li class="meta">Aún no hay libros.</li>{% endfor %}
+</ul>
+{% if perms.biblioteca.add_libro %}
+<div class="acciones"><a class="btn" href="{% url 'libro_nuevo' %}">Añadir libro</a></div>
+{% endif %}
+{% endblock %}

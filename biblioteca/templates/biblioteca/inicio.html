@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Gestión de libros.</h1>
+<p class="lead">Formularios validados, administración, sesiones y permisos por rol, en un sistema pequeño y claro.</p>
+<div class="acciones" style="margin-top:0">
+  {% if user.is_authenticated %}
+    <a class="btn" href="{% url 'libros' %}">Ver catálogo</a>
+  {% else %}
+    <a class="btn" href="{% url 'login' %}">Entrar</a>
+    <a class="btn ghost" href="{% url 'registro' %}">Crear cuenta</a>
+  {% endif %}
+</div>
+{% endblock %}

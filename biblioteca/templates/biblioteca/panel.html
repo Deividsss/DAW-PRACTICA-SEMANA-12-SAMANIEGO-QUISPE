@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Panel{% endblock %}
+{% block content %}
+<h1>Hola, {{ user.username }}.</h1>
+<p class="lead">Zona restringida: solo con sesión iniciada.</p>
+<dl>
+  <dt>Rol</dt><dd>{{ roles }}</dd>
+  <dt>Puede crear libros</dt><dd>{{ puede_crear|yesno:"Sí,No" }}</dd>
+  <dt>Visitas al panel</dt><dd>{{ visitas }} <span class="meta">(guardado en sesión)</span></dd>
+  <dt>Últimas rutas</dt><dd>{% for r in rutas %}{{ r }}{% if not forloop.last %} · {% endif %}{% empty %}—{% endfor %}</dd>
+</dl>
+<div class="acciones" style="margin-top:0">
+  <a class="btn" href="{% url 'libros' %}">Catálogo</a>
+  {% if user.is_staff %}<a class="btn ghost" href="{% url 'admin:index' %}">Administración</a>{% endif %}
+</div>
+{% endblock %}
